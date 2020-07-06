@@ -1,0 +1,13 @@
+- name: Zabbix Agent
+  hosts: windows
+  tasks:
+
+  - name: Install Zabbix
+    import_role:
+      name: install-agent
+    when: zbx_deploy == true
+
+  - name: Uninstall Zabbix
+    import_role:
+      name: uninstall-agent
+    when: zbx_deploy == false

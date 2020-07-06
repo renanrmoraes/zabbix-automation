@@ -1,0 +1,51 @@
+---
+# tasks file for add-host
+
+- name: Collect only facts returned by facter
+  setup:
+    gather_subset:
+      - '!all'
+      - '!any'
+      - network
+      - facter
+  register: vminfo
+
+- name: Create a new host or update an existing host's info
+  local_action:
+    module: zabbix_host
+    server_url: "http://{{ v_zbx_server }}/zabbix"
+    login_user: ansible
+    login_password: ansible
+    host_name: "{{ inventory_hostname }}"
+    visible_name: "{{ inventory_hostname }}"
+    description:
+    host_groups:
+      - Servers
+    link_templates:
+      - Template OS Windows by Zabbix agent
+    status: enabled
+    state: present
+    inventory_mode: manual
+    inventory_zabbix:
+      name: "{{ vminfo.ansible_facts.ansible_fqdn }}"
+      type_full: "{{ vminfo.ansible_facts.ansible_distribution }}"
+      os_full: "{{ vminfo.ansible_facts.ansible_distribution }}"
+      os_short: "{{ vminfo.ansible_facts.ansible_distribution_version }}"
+      serialno_a: "{{ vminfo.ansible_facts.ansible_machine_id }}"
+      macaddress_a: "{{ vminfo.ansible_facts.ansible_interfaces[0].macaddress }}"
+      type: "{{ vminfo.ansible_facts.ansible_os_product_type }}"
+      alias: "{{ vminfo.ansible_facts.ansible_netbios_name }}"
+      os: "{{ vminfo.ansible_facts.ansible_os_name }}"
+      hardware: "{{ vminfo.ansible_facts.ansible_system_vendor }}"
+      hw_arch: "{{ vminfo.ansible_facts.ansible_architecture }}"
+      hardware_full: |
+        "NUMBER_OF_PROCESSORS: {{ vminfo.ansible_facts.ansible_env.NUMBER_OF_PROCESSORS }}"
+        "PROCESSOR_ARCHITECTURE: {{ vminfo.ansible_facts.ansible_env.PROCESSOR_ARCHITECTURE }}"
+        "PROCESSOR_IDENTIFIER: {{ vminfo.ansible_facts.ansible_env.PROCESSOR_IDENTIFIER }}"
+    interfaces:
+      - type: 1
+        main: 1
+        useip: 1
+        ip: "{{ vminfo.ansible_facts.ansible_ip_addresses[0] }}"
+        dns: "{{ inventory_hostname }}"
+        port: 10050

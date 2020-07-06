@@ -1,0 +1,5 @@
+---
+# vars file for add-host
+
+v_zbx_server: "{{ zbx_server }}"
+

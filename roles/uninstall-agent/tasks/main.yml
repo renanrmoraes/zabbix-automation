@@ -1,0 +1,16 @@
+---
+# vars file for install-agent
+
+- name: Stop Zabbix Agent Service
+  win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -x"
+  ignore_errors: yes
+
+- name: Uninstall Zabbix Agent Service
+  win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -d"
+  ignore_errors: yes
+
+- name: Remove Zabbix Agent Directory
+  win_file:
+    path: "{{ v_zbx_install_path }}"
+    state: absent
+  ignore_errors: yes

@@ -1,0 +1,11 @@
+---
+# tasks file for remove-host
+
+- name: Create a new host or update an existing host's info
+  local_action:
+    module: zabbix_host
+    server_url: "http://{{ v_zbx_server }}/zabbix"
+    login_user: ansible
+    login_password: ansible
+    host_name: "{{ inventory_hostname }}"
+    state: absent

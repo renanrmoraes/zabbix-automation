@@ -1,0 +1,11 @@
+- name: Zabbix Agent
+  hosts: windows
+  tasks:
+
+  - name: Uninstall Zabbix
+    import_role:
+      name: remove-host
+
+  - name: Uninstall Zabbix
+    import_role:
+      name: uninstall-agent

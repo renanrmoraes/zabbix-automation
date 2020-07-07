@@ -1,0 +1,6 @@
+---
+# vars file for install-agent
+
+v_zbx_agent_lnx_url: "{{ zbx_lnx_agent_url }}"
+
+v_zbx_lnx_install_path: "{{ zbx_install_path | default('/etc/zabbix') }}"

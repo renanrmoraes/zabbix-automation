@@ -1,0 +1,76 @@
+---
+# tasks file for install-agent
+
+- name: Include vars of linux.yml
+  include_vars:
+    file: linux.yml
+
+- name: Add the user 'zabbix'
+  user:
+    name: zabbix
+    shell: /bin/false
+    state: present
+
+- name: collect facts about system services
+  service_facts:
+  register: services_state
+
+- name: Debug
+  debug:
+    var: services_state.ansible_facts.services['firewalld.service'].status
+
+- firewalld:
+    rich_rule: rule family=ipv4 source address=192.168.1.120/32 service name=zabbix-agent accept
+    zone: public
+    state: enabled
+    immediate: yes    
+    permanent: yes
+  when: services_state.ansible_facts.services['firewalld.service'].state == "running"
+
+- name: firewalld reload
+  command: firewall-cmd --reload
+  when: services_state.ansible_facts.services['firewalld.service'].state == "running"
+
+- name: Create Zabbix Agent Install directory
+  file:
+    path: "{{ v_zbx_lnx_install_path }}"
+    state: directory
+    owner: zabbix
+    group: zabbix
+
+- name: Create Zabbix Agent Log directory
+  file:
+    path: /var/log/zabbix/
+    state: directory
+    owner: zabbix
+    group: zabbix
+
+- name: Create Zabbix Agent Pid directory
+  file:
+    path: /run/zabbix/
+    state: directory
+    owner: zabbix
+    group: zabbix
+
+- name: Download Zabbix Agent
+  unarchive:
+    src: "{{ v_zbx_agent_lnx_url }}"
+    dest: "{{ v_zbx_lnx_install_path }}"
+    remote_src: yes
+
+- name: Create Config File from a Jinja2 template
+  template:
+    src: templates/zabbix_agentd.conf_lnx.j2
+    dest: "{{ v_zbx_lnx_install_path }}/conf/zabbix_agentd.conf"
+
+- name: Create Service file from a Jinja2 template
+  template:
+    src: templates/zabbix-agent.service.j2
+    dest: "/usr/lib/systemd/system/zabbix-agent.service"
+
+- name: Enable and start Zabbix Agent
+  systemd:
+    state: started
+    daemon_reload: yes
+    enabled: yes
+    name: zabbix-agent

@@ -1,11 +1,13 @@
 - name: Zabbix Agent
-  hosts: all
+  hosts: linux
   tasks:
 
   - name: Install Zabbix
     import_role:
       name: install-agent
+      tasks_from: linux
 
   - name: Add/Update Host in Zabbix Server
     import_role:
       name: add-host
+

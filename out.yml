@@ -1,5 +1,5 @@
 - name: Zabbix Agent
-  hosts: windows
+  hosts: all
   tasks:
 
   - name: Uninstall Zabbix

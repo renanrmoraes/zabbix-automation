@@ -1,0 +1,16 @@
+- name: Zabbix Agent
+  hosts: all
+  tasks:
+
+  - name: Uninstall Zabbix agent Linux
+    import_role:
+      name: uninstall-agent
+      tasks_from: linux
+    when: "'linux' in {{ group_names }}" 
+
+  - name: Uninstall Zabbix agent Windows
+    import_role:
+      name: uninstall-agent
+      tasks_from: windows
+    when: "'windows' in {{ group_names }}"
+

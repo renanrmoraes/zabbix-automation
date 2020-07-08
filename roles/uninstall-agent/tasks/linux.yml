@@ -1,0 +1,24 @@
+---
+# vars file for install-agent
+
+- name: Enable and start Zabbix Agent
+  systemd:
+    state: stopped
+    name: zabbix-agent
+
+- name: Delete Service file
+  file:
+    path: "/usr/lib/systemd/system/zabbix-agent.service"
+    state: absent
+
+
+- name: Remove Zabbix Agent Files
+  file:
+    path: "{{ v_zbx_lnx_install_path }}"
+    state: absent
+
+- name: Remove the user 'zabbix'
+  user:
+    name: zabbix
+    state: absent
+    remove: yes

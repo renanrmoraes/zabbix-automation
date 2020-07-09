@@ -1,7 +1,0 @@
-- name: Zabbix Agent
-  hosts: all
-  tasks:
-
-  - name: Add/Update Host in Zabbix Server
-    import_role:
-      name: add-host

@@ -1,25 +1,25 @@
 ---
 
-- name: Include vars of linux.yml
+- name: (LINUX) Include vars of linux.yml
   include_vars:
     file: linux.yml
 
-- name: (Linux) Stop Zabbix Agent service
+- name: (LINUX) Stop Zabbix Agent service
   systemd:
     state: stopped
     name: zabbix-agent
 
-- name: (Linux) Delete Service file
+- name: (LINUX) Delete Service file
   file:
     path: "/usr/lib/systemd/system/zabbix-agent.service"
     state: absent
 
-- name: (Linux) Remove Zabbix Agent Files
+- name: (LINUX) Remove Zabbix Agent Files
   file:
     path: "{{ v_zbx_lnx_install_path }}"
     state: absent
 
-- name: (Linux) Remove the user 'zabbix'
+- name: (LINUX) Remove the user 'zabbix'
   user:
     name: zabbix
     state: absent

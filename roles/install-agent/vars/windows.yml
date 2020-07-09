@@ -3,9 +3,4 @@
 
 v_zbx_agent_url: "{{ zbx_agent_url }}"
 
-v_zbx_url_checksum: "{{ zbx_url_checksum }}"
-
-v_zbx_url_checksum_algorithm: "{{ zbx_url_checksum_algorithm }}"
-
 v_zbx_install_path: "{{ zbx_install_path | default('C:\\zabbix_agent') }}"
-

@@ -1,17 +1,17 @@
 ---
-- name: Include vars of windows.yml
+- name: (WINDOWS) Include vars of windows.yml
   include_vars:
     file: windows.yml
 
-- name: (Windows) Stop Zabbix Agent Service
+- name: (WINDOWS) Stop Zabbix Agent Service
   win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -x"
   ignore_errors: yes
 
-- name: (Windows) Uninstall Zabbix Agent Service
+- name: (WINDOWS) Uninstall Zabbix Agent Service
   win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -d"
   ignore_errors: yes
 
-- name: (Windows) Remove Zabbix Agent Directory
+- name: (WINDOWS) Remove Zabbix Agent Directory
   win_file:
     path: "{{ v_zbx_install_path }}"
     state: absent

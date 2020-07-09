@@ -57,7 +57,7 @@
 
 - name: Create Config File from a Jinja2 template
   template:
-    src: templates/zabbix_agentd.conf_lnx.j2
+    src: templates/linux_zabbix_agentd.conf.j2
     dest: "{{ v_zbx_lnx_install_path }}/conf/zabbix_agentd.conf"
 
 - name: Create Service file from a Jinja2 template

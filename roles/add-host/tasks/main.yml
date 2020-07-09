@@ -10,7 +10,7 @@
       - facter
   register: vminfo
 
-- debug: var=vminfo
+#- debug: var=vminfo
 
 - name: Create a new host or update an existing host's info
   local_action:
@@ -27,7 +27,7 @@
       - "{{ l_template }}"
     status: enabled
     state: present
-    inventory_mode: manual
+#    inventory_mode: disable
 #    inventory_zabbix:
 #      name: "{{ vminfo.ansible_facts.ansible_fqdn }}"
 #      type_full: "{{ vminfo.ansible_facts.ansible_distribution }}"
@@ -47,8 +47,8 @@
     interfaces:
       - type: 1
         main: 1
-        useip: 1
+        useip: 0
 #        ip: "{{ vminfo.ansible_facts.ansible_ip_addresses[0] }}"
-        ip: "{{ vminfo.ansible_facts.ansible_ip_addresses[0] if vminfo.ansible_facts.ansible_os_family == 'Windows' else vminfo.ansible_facts.ansible_all_ipv4_addresses[0] }}"
+        ip: "{{ vminfo.ansible_facts.ansible_ip_addresses[0] if vminfo.ansible_facts.ansible_os_family == 'Windows' else vminfo.ansible_facts.ansible_default_ipv4.address }}"
         dns: "{{ inventory_hostname }}"
         port: 10050

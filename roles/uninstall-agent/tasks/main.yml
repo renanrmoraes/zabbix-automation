@@ -1,2 +1,9 @@
 ---
-# vars file for install-agent
+- name: Agent Linux
+  import_tasks: linux.yml
+  when: "'linux' in group_names"
+
+- name: Agent Windows
+  import_tasks: windows.yml
+  when: "'windows' in group_names"
+

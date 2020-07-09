@@ -1,7 +1,7 @@
 ---
 # tasks file for remove-host
 
-- name: Create a new host or update an existing host's info
+- name: Delete an existing host's info
   local_action:
     module: zabbix_host
     server_url: "http://{{ v_zbx_server }}/zabbix"

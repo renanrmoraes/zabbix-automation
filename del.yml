@@ -4,5 +4,5 @@
   hosts: all
   gather_facts: false
   roles:
-  - install-agent
-  - add-host
+  - remove-host
+  - uninstall-agent

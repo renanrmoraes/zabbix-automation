@@ -1,5 +1,5 @@
 ---
 # vars file for install-agent
 
-v_zbx_install_path: "{{ zbx_install_path | default('C:\\zabbix_agent') }}"
+#v_zbx_install_path: "{{ zbx_install_path | default('C:\\zabbix_agent') }}"
 

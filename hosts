@@ -3,8 +3,8 @@
 
 [linux]
 kmaster0.home.lab l_template="Template OS Linux by Zabbix agent"
-kmaster1.home.lab l_template="Template OS Linux by Zabbix agent"
-kmaster2.home.lab l_template="Template OS Linux by Zabbix agent"
+#kmaster1.home.lab l_template="Template OS Linux by Zabbix agent"
+#kmaster2.home.lab l_template="Template OS Linux by Zabbix agent"
 
 
 

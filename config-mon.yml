@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  gather_facts: false
+  tasks:
+
+    - name: Install
+      include_role:
+        name: "{{ item }}"
+      loop:
+        - add-host
+      when: "zbx_deploy == True"
+
+    - name: Uninstall
+      include_role:
+        name: "{{ item }}"
+      loop:
+        - remove-host
+      when: "zbx_deploy == False"
+

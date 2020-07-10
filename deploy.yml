@@ -1,9 +1,22 @@
 ---
 
-- name: Zabbix Agent Install/Config
-  hosts: all
+- hosts: all
   gather_facts: false
-  roles:
-  - install-agent
-  - add-host
+  tasks:
+
+    - name: Install
+      include_role:
+        name: "{{ item }}"
+      loop:
+        - install-agent
+        - add-host
+      when: "zbx_deploy == True"
+
+    - name: Uninstall
+      include_role:
+        name: "{{ item }}"
+      loop:
+        - remove-host
+        - uninstall-agent
+      when: "zbx_deploy == False"
 

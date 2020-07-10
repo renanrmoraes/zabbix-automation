@@ -1,8 +1,0 @@
-- name: Zabbix Agent
-  hosts: linux
-  tasks:
-
-  - name: Install Zabbix
-    import_role:
-      name: install-agent
-      tasks_from: service-status

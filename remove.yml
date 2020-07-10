@@ -1,8 +1,0 @@
----
-
-- name: Zabbix Agent Install/Config
-  hosts: all
-  gather_facts: false
-  roles:
-  - remove-host
-  - uninstall-agent

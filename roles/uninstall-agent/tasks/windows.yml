@@ -10,7 +10,7 @@
 
 - name: fact_line
   set_fact:
-     fact_line: "{{ service_info.path | regex_search('C.*agent..exe') }}"
+     fact_line: "{{ service_info.path | regex_search('[C|c].*agent..exe') }}"
 
 - name: exe_file
   set_fact:
@@ -18,11 +18,11 @@
 
 - name: exe_path
   set_fact:
-     exe_path: "{{ fact_line | regex_search('C.*\\\\') }}"
+     exe_path: "{{ fact_line | regex_search('[C|c].*\\\\') }}"
 
 - name: install_path
   set_fact:
-     install_path: "{{ fact_line | regex_search('(C.*zabbix)[^\\\\]*\\\\') }}"
+     install_path: "{{ fact_line | regex_search('([C|c].*zabbix)[^\\\\]*\\\\') }}"
 
 - name: (WINDOWS) Stop Zabbix Agent Service
   win_shell: "cd {{ exe_path }} & {{ exe_file }} -x"

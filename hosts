@@ -1,16 +1,16 @@
 [windows]
 dc.home.lab l_template="Template OS Windows by Zabbix agent"
-win01.home.lab l_template="Template OS Windows by Zabbix agent"
-win02.home.lab l_template="Template OS Windows by Zabbix agent"
+#win01.home.lab l_template="Template OS Windows by Zabbix agent"
+#win02.home.lab l_template="Template OS Windows by Zabbix agent"
 
 
 [linux]
-kmaster0.home.lab l_template="k8s"
-kmaster1.home.lab l_template="k8s"
-kmaster2.home.lab l_template="k8s"
-knode0.home.lab l_template="k8s"
-knode1.home.lab l_template="k8s"
-knode2.home.lab l_template="k8s"
+#kmaster0.home.lab l_template="k8s"
+#kmaster1.home.lab l_template="k8s"
+#kmaster2.home.lab l_template="k8s"
+#knode0.home.lab l_template="k8s"
+#knode1.home.lab l_template="k8s"
+#knode2.home.lab l_template="k8s"
 #knode2.home.lab l_template='["Template App Docker","Template OS Linux by Zabbix agent"]'
 
 

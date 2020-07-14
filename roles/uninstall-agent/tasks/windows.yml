@@ -3,16 +3,41 @@
   include_vars:
     file: windows.yml
 
+- name: Check if a service is installed
+  win_service:
+    name: "{{ v_srv_name }}"
+  register: service_info
+
+- name: fact_line
+  set_fact:
+     fact_line: "{{ service_info.path | regex_search('C.*agent..exe') }}"
+
+- name: exe_file
+  set_fact:
+     exe_file: "{{ fact_line | regex_search('zabbix[\\w+$]*.exe') }}"
+
+- name: exe_path
+  set_fact:
+     exe_path: "{{ fact_line | regex_search('C.*\\\\') }}"
+
+- name: install_path
+  set_fact:
+     install_path: "{{ fact_line | regex_search('(C.*zabbix)[^\\\\]*\\\\') }}"
+
 - name: (WINDOWS) Stop Zabbix Agent Service
-  win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -x"
+  win_shell: "cd {{ exe_path }} & {{ exe_file }} -x"
+  args:
+    executable: cmd
   ignore_errors: yes
 
 - name: (WINDOWS) Uninstall Zabbix Agent Service
-  win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -d"
+  win_shell: "cd {{ exe_path }} & {{ exe_file }} -d"
+  args:
+    executable: cmd
   ignore_errors: yes
 
 - name: (WINDOWS) Remove Zabbix Agent Directory
   win_file:
-    path: "{{ v_zbx_install_path }}"
+    path: "{{ install_path }}"
     state: absent
   ignore_errors: yes

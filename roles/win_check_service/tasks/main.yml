@@ -1,0 +1,28 @@
+- name: Check if a service is installed
+  win_service:
+    name: "{{ v_srv_name }}"
+  register: service_info
+
+- name: fact_line
+  set_fact:
+     fact_line: "{{ service_info.path | regex_search('C.*agent..exe') }}"
+
+- debug: var=fact_line
+
+- name: exe_file
+  set_fact:
+     exe_file: "{{ fact_line | regex_search('zabbix[\\w+$]*.exe') }}"
+
+- debug: var=exe_file
+
+- name: exe_path
+  set_fact:
+     exe_path: "{{ fact_line | regex_search('C.*\\\\') }}"
+
+- debug: var=exe_path
+
+- name: install_path
+  set_fact:
+     install_path: "{{ fact_line | regex_search('(C.*zabbix)[^\\\\]*\\\\') }}"
+
+- debug: var=install_path

@@ -1,0 +1,11 @@
+---
+- name: Check Windows Update
+  hosts: windows
+  gather_facts: False
+
+  tasks:
+  - name: Check Windows Update
+    include_role:
+      name: win_check_service
+  - name: (WINDOWS) Stop Zabbix Agent Service
+    win_shell: "{{ path_fact }} -x"

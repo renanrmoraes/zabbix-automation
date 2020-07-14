@@ -36,7 +36,7 @@
     dest: "{{ v_zbx_install_path }}\\conf\\zabbix_agentd.conf"
 
 - name: (WINDOWS) Install Zabbix Agent Service
-  win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -c C:\\zabbix_agent\\conf\\zabbix_agentd.conf -i"
+  win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -c {{ v_zbx_install_path }}\\conf\\zabbix_agentd.conf -i"
 
 - name: (WINDOWS) Start Zabbix Agent Service
   win_shell: "{{ v_zbx_install_path }}\\bin\\zabbix_agentd.exe -s"

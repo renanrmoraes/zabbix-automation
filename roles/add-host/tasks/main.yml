@@ -20,7 +20,7 @@
     visible_name: "{{ inventory_hostname }}"
     description:
     host_groups:
-      - {{ h_groups }}
+      - "{{ h_groups }}"
     link_templates:
        - "{{ l_template }}"
 #    link_templates:

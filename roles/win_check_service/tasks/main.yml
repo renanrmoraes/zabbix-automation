@@ -7,7 +7,7 @@
 
 - name: fact_line
   set_fact:
-     fact_line: "{{ service_info.path | regex_search('C.*agent..exe') }}"
+     fact_line: "{{ service_info.path | regex_search('[C|c].*agent..exe') }}"
 
 - debug: var=fact_line
 
@@ -19,12 +19,12 @@
 
 - name: exe_path
   set_fact:
-     exe_path: "{{ fact_line | regex_search('C.*\\\\') }}"
+     exe_path: "{{ fact_line | regex_search('[C|c].*\\\\') }}"
 
 - debug: var=exe_path
 
 - name: install_path
   set_fact:
-     install_path: "{{ fact_line | regex_search('(C.*zabbix)[^\\\\]*\\\\') }}"
+     install_path: "{{ fact_line | regex_search('([C|c].*zabbix)[^\\\\]*\\\\') }}"
 
 - debug: var=install_path

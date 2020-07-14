@@ -2,4 +2,6 @@
 # vars file for add-host
 
 v_zbx_server: "{{ zbx_server }}"
+v_zbx_username: "{{ zbx_username | default('ansible') }}"
+v_zbx_password: "{{ zbx_password | default('ansible')}}"
 

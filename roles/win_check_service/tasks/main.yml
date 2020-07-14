@@ -3,6 +3,8 @@
     name: "{{ v_srv_name }}"
   register: service_info
 
+- debug: var=service_info
+
 - name: fact_line
   set_fact:
      fact_line: "{{ service_info.path | regex_search('C.*agent..exe') }}"

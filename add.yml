@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  gather_facts: false
+  tasks:
+
+    - name: Install
+      include_role:
+        name: add-host
+#        tasks_from: debug

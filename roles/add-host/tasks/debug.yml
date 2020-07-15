@@ -1,0 +1,8 @@
+---
+- name: debug var {{ v_l_template }}
+  debug: 
+    msg: "{{ v_l_template }}"
+
+- name: debug var {{ l_template }}
+  debug:
+    msg: "{{ l_template }}"

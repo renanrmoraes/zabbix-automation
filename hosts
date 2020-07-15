@@ -2,30 +2,20 @@
 dc.home.lab l_template="Template OS Windows by Zabbix agent" h_groups="Servers"
 #win01.home.lab l_template="Template OS Windows by Zabbix agent"
 #win02.home.lab l_template="Template OS Windows by Zabbix agent"
-
+sspoosce01.intra-f9c.com.br l_template="F9C_TM_OSCE" h_groups="F9C"
 
 [linux]
-#kmaster0.home.lab l_template="k8s"
-#kmaster1.home.lab l_template="k8s"
-#kmaster2.home.lab l_template="k8s"
-#knode0.home.lab l_template="k8s"
-#knode1.home.lab l_template="k8s"
-#knode2.home.lab l_template="k8s"
-#knode2.home.lab l_template='["Template App Docker","Template OS Linux by Zabbix agent"]'
-
-
 
 [windows:vars]
 ansible_connection = "winrm"
 ansible_port = 5986
-
 ansible_winrm_transport = kerberos
-
-ansible_user = "ansible@HOME.LAB"
-ansible_password = "q1w2e3R$"
+ansible_user = "awx_ansible@INTRA-F9C.COM.BR"
+ansible_password = "zx$f~=W4RCoPPVBPQC:C"
 ansible_winrm_server_cert_validation = ignore
 
-zbx_agent_url = "https://www.zabbix.com/downloads/5.0.1/zabbix_agent-5.0.1-windows-amd64.zip"
+zbx_agent_url = "https://www.zabbix.com/downloads/3.0.31/zabbix_agent-3.0.31-windows-amd64.zip"
+
 
 [linux:vars]
 zbx_agent_url = "https://www.zabbix.com/downloads/5.0.1/zabbix_agent-5.0.1-linux-3.0-amd64-static.tar.gz"
@@ -37,4 +27,6 @@ zbx_deploy = False
 
 #zbx_install_path =
 
-zbx_server=zbx.home.lab
+zbx_server = "sspozbx01.intra-f9c.com.br"
+zbx_username = "rmoraes"
+zbx_password = "#astra$20"

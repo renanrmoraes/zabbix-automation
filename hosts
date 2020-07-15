@@ -1,5 +1,5 @@
 [windows]
-dc.home.lab l_template="Template OS Windows by Zabbix agent"
+dc.home.lab l_template="Template OS Windows by Zabbix agent" h_groups="Servers"
 #win01.home.lab l_template="Template OS Windows by Zabbix agent"
 #win02.home.lab l_template="Template OS Windows by Zabbix agent"
 

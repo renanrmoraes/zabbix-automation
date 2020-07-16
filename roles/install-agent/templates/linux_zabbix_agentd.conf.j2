@@ -10,6 +10,8 @@
 # Default:
 # PidFile=/tmp/zabbix_agentd.pid
 
+PidFile=/var/run/zabbix/zabbix_agentd.pid
+
 ### Option: LogType
 #	Specifies where log messages are written to:
 #		system  - syslog
@@ -27,7 +29,7 @@
 # Default:
 # LogFile=
 
-LogFile=/tmp/zabbix_agentd.log
+LogFile=/var/log/zabbix/zabbix_agentd.log
 
 ### Option: LogFileSize
 #	Maximum size of log file in MB.

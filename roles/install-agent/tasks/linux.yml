@@ -2,11 +2,17 @@
   include_vars:
     file: linux.yml
 
+- name: (LINUX) Check if user 'test' existe
+  shell: "id test"
+  register: user_test
+  ignore_errors: True
+
 - name: (LINUX) Add the user 'zabbix'
   user:
     name: zabbix
     shell: /bin/false
     state: present
+  when: user_test.stderr != ""
 
 - name: (LINUX) Collect facts about system services
   service_facts:

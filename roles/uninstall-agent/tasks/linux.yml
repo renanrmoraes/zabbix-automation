@@ -19,8 +19,12 @@
     path: "{{ v_zbx_lnx_install_path }}"
     state: absent
 
-- name: (LINUX) Remove the user 'zabbix'
+- name: (LINUX) Rename Log file
+  shell: "mv /var/log/zabbix/zabbix_agentd.log /var/log/zabbix/$(date +'%Y-%m-%d')_zabbix_agentd.log"
+  ignore_errors: True
+
+- name: (LINUX) Remove the user '{{v_zbx_user}}'
   user:
-    name: zabbix
+    name: "{{ v_zbx_user }}"
     state: absent
     remove: yes

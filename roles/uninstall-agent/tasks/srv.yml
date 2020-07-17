@@ -1,9 +1,0 @@
-- name: Check if a service is installed
-  win_service:
-    name: "{{ v_srv_name }}"
-  register: service_info
-
-- set_fact:
-     path_fact: "{{ service_info.path | regex_search('C.*agent..exe') }}"
-
-- debug: var=path_fact

@@ -1,10 +1,11 @@
 [windows]
-dc.home.lab l_template="['Template OS Windows by Zabbix agent','Template App NTP Service','Template App LDAP Service','Template App HTTP Service']" h_groups="Servers"
+#dc.home.lab l_template="['Template OS Windows by Zabbix agent','Template App NTP Service','Template App LDAP Service','Template App HTTP Service']" h_groups="Servers"
 #win01.home.lab l_template="Template OS Windows by Zabbix agent"
 #win02.home.lab l_template="Template OS Windows by Zabbix agent"
 #sspoosce01.intra-f9c.com.br l_template="F9C_TM_OSCE" h_groups="F9C"
 
 [linux]
+kmaster0.home.lab l_template="['Template OS Windows by Zabbix agent']" h_groups="Servers"
 
 [windows:vars]
 ansible_connection = "winrm"

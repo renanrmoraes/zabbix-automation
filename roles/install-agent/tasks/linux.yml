@@ -2,17 +2,11 @@
   include_vars:
     file: linux.yml
 
-- name: (LINUX) Check if user 'zabbix' exists
-  shell: "id zabbix"
-  register: user_zabbix
-  ignore_errors: True
-
-- name: (LINUX) Add the user 'zabbix'
+- name: (LINUX) Add the user "{{ v_zbx_user }}"
   user:
-    name: zabbix
+    name: "{{ v_zbx_user }}"
     shell: /bin/false
     state: present
-  when: user_zabbix.stderr != ""
 
 - name: (LINUX) Collect facts about system services
   service_facts:
@@ -34,22 +28,22 @@
   file:
     path: "{{ v_zbx_lnx_install_path }}"
     state: directory
-    owner: zabbix
-    group: zabbix
+    owner: "{{ v_zbx_user }}"
+    group: "{{ v_zbx_user }}"
 
 - name: (LINUX) Create Zabbix Agent Log directory
   file:
     path: /var/log/zabbix/
     state: directory
-    owner: zabbix
-    group: zabbix
+    owner: "{{ v_zbx_user }}"
+    group: "{{ v_zbx_user }}"
 
 - name: (LINUX) Create Zabbix Agent Pid directory
   file:
     path: /run/zabbix/
     state: directory
-    owner: zabbix
-    group: zabbix
+    owner: "{{ v_zbx_user }}"
+    group: "{{ v_zbx_user }}"
 
 - name: (LINUX) Download Zabbix Agent
   unarchive:

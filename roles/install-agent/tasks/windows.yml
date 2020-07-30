@@ -11,10 +11,8 @@
 - name: (WINDOWS) Download Zabbix Agent Package and checksum
   win_get_url:
     url: "{{ v_zbx_agent_url }}"
-    dest: "{{ item }}\\zabbix_agent.zip"
+    dest: "{{ temp.path }}\\zabbix_agent.zip"
     force: True
-  with_items:
-    - "{{ temp.path }}"
 
 - name: (WINDOWS) Unzip Zabbix Agent Package
   win_unzip:

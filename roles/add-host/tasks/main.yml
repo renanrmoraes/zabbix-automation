@@ -15,7 +15,7 @@
 - name: Create a new host or update an existing host's info
   local_action:
     module: zabbix_host
-    server_url: "http://{{ v_zbx_server }}/zabbix"
+    server_url: "http://{{ v_zbx_server }}"
     login_user: "{{ v_zbx_username }}"
     login_password: "{{ v_zbx_password }}"
     host_name: "{{ inventory_hostname }}"

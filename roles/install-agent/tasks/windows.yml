@@ -16,17 +16,13 @@
 
 - name: (WINDOWS) Unzip Zabbix Agent Package
   win_unzip:
-    src: "{{ item }}\\zabbix_agent.zip"
+    src: "{{ temp.path }}\\zabbix_agent.zip"
     dest: "{{ v_zbx_install_path }}"
-  with_items:
-    - "{{ temp.path }}"
 
 - name: (WINDOWS) Remove Temporary Directory
   win_file:
-    path: "{{ item }}"
+    path: "{{ temp.path }}"
     state: absent
-  with_items:
-    - "{{ temp.path }}"
 
 - name: (WINDOWS) Create Config File from a Jinja2 template
   win_template:

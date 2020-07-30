@@ -16,7 +16,7 @@
       include_role:
         name: "{{ item }}"
       loop:
-        - remove-host
+#        - remove-host
         - uninstall-agent
       when: "zbx_deploy == False"
 
